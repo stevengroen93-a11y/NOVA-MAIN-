@@ -8,6 +8,7 @@ const navLinks = [
   { href: "#diensten", label: "Diensten" },
   { href: "#werkwijze", label: "Werkwijze" },
   { href: "#over-ons", label: "Over ons" },
+  { href: "#contact", label: "Maatwerk" },
   { href: "#contact", label: "Contact" },
 ];
 
