@@ -66,17 +66,12 @@ export default function Contact() {
             {
               icon: MailIcon,
               label: "E-mail",
-              value: "info@nova-automations.nl",
-            },
-            {
-              icon: PhoneIcon,
-              label: "Telefoon",
-              value: "+31 6 00 000 000",
+              value: "info@nova-automations.com",
             },
             {
               icon: MapPinIcon,
               label: "Locatie",
-              value: "Nederland",
+              value: "Poortland 66, Amsterdam",
               className: "col-span-2",
             },
           ]}
@@ -131,7 +126,7 @@ export default function Contact() {
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <Label htmlFor="spam">{question}</Label>
+                <Label htmlFor="spam">{question} <span className="text-gray-400 font-normal">(Anti-spam verificatie)</span></Label>
                 <Input
                   id="spam"
                   type="text"
