@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 
@@ -162,15 +162,6 @@ export default function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-6 py-28 text-center">
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="w-full">
 
-          {/* Badge */}
-          <motion.div
-            variants={itemVariants}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-orange-700 backdrop-blur"
-          >
-            <Zap className="h-3.5 w-3.5 text-orange-500" />
-            AI-automatisering voor Nederlandse bedrijven
-          </motion.div>
-
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
@@ -212,7 +203,7 @@ export default function Hero() {
           {/* Pills */}
           <motion.ul
             variants={itemVariants}
-            className="mb-12 flex flex-wrap items-center justify-center gap-3 text-xs font-medium uppercase tracking-widest text-foreground/60"
+            className="mb-12 hidden sm:flex flex-wrap items-center justify-center gap-3 text-xs font-medium uppercase tracking-widest text-foreground/60"
           >
             {pills.map((pill) => (
               <li key={pill} className="rounded-full border border-border/40 bg-white/60 px-4 py-2 backdrop-blur">
