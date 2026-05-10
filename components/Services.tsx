@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Bot, Workflow, BarChart3, MessageSquare, Cpu, Lightbulb, ChevronDown } from "lucide-react";
+import { Bot, Workflow, BarChart3, MessageSquare, Cpu, Lightbulb, ChevronDown, Check, Circle } from "lucide-react";
 
 const services = [
   {
@@ -54,109 +54,228 @@ const services = [
   },
 ];
 
-/* ── SVG decorative visuals per service ── */
+/* ── Mini UI mockups ── */
 function Visual({ type }: { type: string }) {
-  switch (type) {
-    case "agents":
-      return (
-        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 200" fill="none">
-          <circle cx="100" cy="100" r="30" stroke="white" strokeWidth="2" />
-          <circle cx="40"  cy="60"  r="14" stroke="white" strokeWidth="1.5" />
-          <circle cx="160" cy="60"  r="14" stroke="white" strokeWidth="1.5" />
-          <circle cx="40"  cy="140" r="14" stroke="white" strokeWidth="1.5" />
-          <circle cx="160" cy="140" r="14" stroke="white" strokeWidth="1.5" />
-          <circle cx="100" cy="20"  r="10" stroke="white" strokeWidth="1.5" />
-          <line x1="100" y1="70"  x2="100" y2="30"  stroke="white" strokeWidth="1" />
-          <line x1="72"  y1="84"  x2="52"  y2="70"  stroke="white" strokeWidth="1" />
-          <line x1="128" y1="84"  x2="148" y2="70"  stroke="white" strokeWidth="1" />
-          <line x1="72"  y1="116" x2="52"  y2="130" stroke="white" strokeWidth="1" />
-          <line x1="128" y1="116" x2="148" y2="130" stroke="white" strokeWidth="1" />
-          <circle cx="100" cy="100" r="6" fill="white" opacity="0.6" />
-          <circle cx="40"  cy="60"  r="4" fill="white" opacity="0.4" />
-          <circle cx="160" cy="60"  r="4" fill="white" opacity="0.4" />
-          <circle cx="40"  cy="140" r="4" fill="white" opacity="0.4" />
-          <circle cx="160" cy="140" r="4" fill="white" opacity="0.4" />
-        </svg>
-      );
-    case "chatbot":
-      return (
-        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 200" fill="none">
-          <rect x="20" y="30" width="120" height="70" rx="14" stroke="white" strokeWidth="2" />
-          <polygon points="40,100 60,100 40,120" fill="white" opacity="0.6" />
-          <circle cx="55"  cy="65" r="7" fill="white" opacity="0.5" />
-          <circle cx="80"  cy="65" r="7" fill="white" opacity="0.5" />
-          <circle cx="105" cy="65" r="7" fill="white" opacity="0.5" />
-          <rect x="60" y="110" width="120" height="60" rx="14" stroke="white" strokeWidth="2" />
-          <polygon points="160,170 140,170 160,190" fill="white" opacity="0.6" />
-          <rect x="75"  cy="135" x1="75" y1="135" width="50" height="6" rx="3" fill="white" opacity="0.4" />
-          <line x1="75" y1="135" x2="155" y2="135" stroke="white" strokeWidth="5" strokeLinecap="round" opacity="0.4" />
-          <line x1="75" y1="148" x2="135" y2="148" stroke="white" strokeWidth="5" strokeLinecap="round" opacity="0.3" />
-        </svg>
-      );
-    case "workflow":
-      return (
-        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 200" fill="none">
-          <rect x="10"  y="85" width="45" height="30" rx="6" stroke="white" strokeWidth="2" />
-          <rect x="78"  y="40" width="45" height="30" rx="6" stroke="white" strokeWidth="2" />
-          <rect x="78"  y="130" width="45" height="30" rx="6" stroke="white" strokeWidth="2" />
-          <rect x="148" y="85" width="45" height="30" rx="6" stroke="white" strokeWidth="2" />
-          <line x1="55"  y1="100" x2="78"  y2="60"  stroke="white" strokeWidth="1.5" />
-          <line x1="55"  y1="100" x2="78"  y2="145" stroke="white" strokeWidth="1.5" />
-          <line x1="123" y1="60"  x2="148" y2="100" stroke="white" strokeWidth="1.5" />
-          <line x1="123" y1="145" x2="148" y2="100" stroke="white" strokeWidth="1.5" />
-          <circle cx="32"  cy="100" r="4" fill="white" opacity="0.6" />
-          <circle cx="100" cy="55"  r="4" fill="white" opacity="0.6" />
-          <circle cx="100" cy="145" r="4" fill="white" opacity="0.6" />
-          <circle cx="170" cy="100" r="4" fill="white" opacity="0.6" />
-        </svg>
-      );
-    case "data":
-      return (
-        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 200" fill="none">
-          <line x1="20" y1="170" x2="180" y2="170" stroke="white" strokeWidth="2" />
-          <line x1="20" y1="170" x2="20"  y2="20"  stroke="white" strokeWidth="2" />
-          <rect x="35"  y="100" width="25" height="70" rx="3" fill="white" opacity="0.5" />
-          <rect x="75"  y="60"  width="25" height="110" rx="3" fill="white" opacity="0.6" />
-          <rect x="115" y="80"  width="25" height="90" rx="3" fill="white" opacity="0.5" />
-          <rect x="155" y="40"  width="25" height="130" rx="3" fill="white" opacity="0.7" />
-          <polyline points="47,98 87,58 127,78 167,38" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="47"  cy="98" r="4" fill="white" />
-          <circle cx="87"  cy="58" r="4" fill="white" />
-          <circle cx="127" cy="78" r="4" fill="white" />
-          <circle cx="167" cy="38" r="4" fill="white" />
-        </svg>
-      );
-    case "custom":
-      return (
-        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 200" fill="none">
-          <rect x="30" y="30" width="140" height="140" rx="16" stroke="white" strokeWidth="2" />
-          <rect x="50" y="50" width="100" height="100" rx="10" stroke="white" strokeWidth="1.5" strokeDasharray="6 4" />
-          <line x1="70"  y1="80"  x2="130" y2="80"  stroke="white" strokeWidth="5" strokeLinecap="round" opacity="0.6" />
-          <line x1="70"  y1="100" x2="110" y2="100" stroke="white" strokeWidth="5" strokeLinecap="round" opacity="0.5" />
-          <line x1="70"  y1="120" x2="120" y2="120" stroke="white" strokeWidth="5" strokeLinecap="round" opacity="0.4" />
-          <circle cx="155" cy="155" r="20" stroke="white" strokeWidth="2" />
-          <line x1="148" y1="155" x2="162" y2="155" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          <line x1="155" y1="148" x2="155" y2="162" stroke="white" strokeWidth="2" strokeLinecap="round" />
-        </svg>
-      );
-    case "strategy":
-      return (
-        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 200" fill="none">
-          <circle cx="100" cy="100" r="70" stroke="white" strokeWidth="2" />
-          <circle cx="100" cy="100" r="45" stroke="white" strokeWidth="1.5" strokeDasharray="5 4" />
-          <circle cx="100" cy="100" r="20" stroke="white" strokeWidth="1.5" />
-          <line x1="100" y1="30"  x2="100" y2="10"  stroke="white" strokeWidth="2" strokeLinecap="round" />
-          <line x1="100" y1="170" x2="100" y2="190" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          <line x1="30"  y1="100" x2="10"  y2="100" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          <line x1="170" y1="100" x2="190" y2="100" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          <circle cx="100" cy="100" r="6" fill="white" opacity="0.8" />
-          <line x1="100" y1="94" x2="100" y2="65" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-          <line x1="100" y1="100" x2="120" y2="100" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-        </svg>
-      );
-    default:
-      return null;
-  }
+  const wrap = "absolute inset-0 p-3 pb-24";
+  const panel = "w-full h-full rounded-xl bg-black/35 backdrop-blur-sm border border-white/10 overflow-hidden p-3 flex flex-col gap-2";
+  const row = "flex items-center justify-between";
+  const label = "text-[9px] text-white/50 uppercase tracking-widest font-semibold";
+  const val = "text-[9px] text-white font-semibold";
+  const bar = (pct: number) => (
+    <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
+      <div className="h-full rounded-full bg-white/50" style={{ width: `${pct}%` }} />
+    </div>
+  );
+
+  if (type === "agents") return (
+    <div className={wrap}>
+      <div className={panel}>
+        <div className={row}>
+          <span className={label}>Nova AI Agents</span>
+          <span className="text-[8px] px-1.5 py-0.5 rounded-full bg-green-500/20 text-green-300 font-semibold">● actief</span>
+        </div>
+        <div className="flex gap-2 mt-1">
+          {[["3","actief","green"],["7","wachtend","amber"],["24","klaar","white"]].map(([n,l,c])=>(
+            <div key={l} className="flex-1 rounded-lg bg-white/5 border border-white/10 p-2 text-center">
+              <div className={`text-base font-bold text-${c}-300`}>{n}</div>
+              <div className="text-[8px] text-white/40">{l}</div>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-col gap-1.5 mt-1">
+          {[
+            ["E-mail sorteren", "running"],
+            ["Offerte verwerken", "running"],
+            ["CRM sync", "queued"],
+            ["Klant onboarding", "done"],
+          ].map(([task, status]) => (
+            <div key={task} className="flex items-center gap-2 rounded-lg bg-white/5 px-2.5 py-1.5">
+              <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${status === "done" ? "bg-green-400" : status === "running" ? "bg-orange-400 animate-pulse" : "bg-white/20"}`} />
+              <span className="text-[9px] text-white/70 flex-1 truncate">{task}</span>
+              <span className="text-[8px] text-white/30">{status === "done" ? "✓" : status === "running" ? "..." : "⏳"}</span>
+            </div>
+          ))}
+        </div>
+        <div className={`${row} mt-auto`}>
+          <span className={label}>847 runs deze maand</span>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (type === "chatbot") return (
+    <div className={wrap}>
+      <div className={panel}>
+        <div className={row}>
+          <div className="flex items-center gap-1.5">
+            <div className="w-5 h-5 rounded-full bg-green-500/30 flex items-center justify-center text-[8px]">💬</div>
+            <span className={label}>Nova Chatbot</span>
+          </div>
+          <span className="text-[8px] px-1.5 py-0.5 rounded-full bg-green-500/20 text-green-300 font-semibold">● online</span>
+        </div>
+        <div className="flex flex-col gap-2 mt-1 flex-1">
+          {/* User message */}
+          <div className="flex justify-end">
+            <div className="rounded-2xl rounded-tr-sm bg-white/15 px-2.5 py-1.5 max-w-[80%]">
+              <p className="text-[9px] text-white/80">Hoi! Wat zijn jullie tarieven?</p>
+            </div>
+          </div>
+          {/* Bot reply */}
+          <div className="flex justify-start">
+            <div className="rounded-2xl rounded-tl-sm bg-white/5 border border-white/10 px-2.5 py-1.5 max-w-[85%]">
+              <p className="text-[9px] text-white/70">Onze pakketten starten vanaf €299/mnd. Ik kan direct een offerte maken! 🎯</p>
+            </div>
+          </div>
+          {/* User */}
+          <div className="flex justify-end">
+            <div className="rounded-2xl rounded-tr-sm bg-white/15 px-2.5 py-1.5 max-w-[80%]">
+              <p className="text-[9px] text-white/80">Graag! Wanneer kunnen jullie beginnen?</p>
+            </div>
+          </div>
+          {/* Bot */}
+          <div className="flex justify-start">
+            <div className="rounded-2xl rounded-tl-sm bg-white/5 border border-white/10 px-2.5 py-1.5 max-w-[85%]">
+              <p className="text-[9px] text-white/70">Ik plan direct een intake in voor je. ✓ <span className="text-green-300">Afspraak ingepland!</span></p>
+            </div>
+          </div>
+        </div>
+        <div className={`${row} mt-1`}>
+          <span className={label}>80% vragen automatisch beantwoord</span>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (type === "workflow") return (
+    <div className={wrap}>
+      <div className={panel}>
+        <div className={row}>
+          <span className={label}>Lead Opvolging Workflow</span>
+          <span className="text-[8px] px-1.5 py-0.5 rounded-full bg-green-500/20 text-green-300 font-semibold">● live</span>
+        </div>
+        <div className="flex flex-col gap-2 mt-2 flex-1">
+          {[
+            ["📨", "E-mail binnenkomt", true],
+            ["🤖", "AI verwerkt inhoud", true],
+            ["📋", "CRM contact aangemaakt", true],
+            ["✉️", "Bevestiging verstuurd", true],
+            ["📅", "Follow-up ingepland", false],
+          ].map(([icon, step, done], i) => (
+            <div key={i} className="flex items-center gap-2">
+              <div className={`w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[9px] ${done ? "bg-green-500/20 border border-green-500/30" : "bg-white/5 border border-white/10"}`}>
+                {done ? "✓" : icon}
+              </div>
+              <div className="flex-1 h-px bg-white/10" />
+              <span className="text-[9px] text-white/60 w-28 truncate text-right">{step as string}</span>
+            </div>
+          ))}
+        </div>
+        <div className={`${row} border-t border-white/10 pt-2`}>
+          <span className={label}>3 workflows actief</span>
+          <span className={val}>1.2K runs/mnd</span>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (type === "data") return (
+    <div className={wrap}>
+      <div className={panel}>
+        <div className={row}>
+          <span className={label}>Rapportage Dashboard</span>
+          <span className="text-[8px] text-white/30">auto-update ✓</span>
+        </div>
+        <div className="grid grid-cols-2 gap-1.5 mt-1">
+          {[["€24.8K","Omzet","↑12%"],["48","Nieuwe leads","↑8%"],["34%","Conversie","↑3%"],["2.1u","Bespaard/dag","↑"]].map(([v,l,ch])=>(
+            <div key={l} className="rounded-lg bg-white/5 border border-white/10 p-2">
+              <div className="text-sm font-bold text-white">{v}</div>
+              <div className="text-[8px] text-white/40">{l}</div>
+              <div className="text-[8px] text-green-300 mt-0.5">{ch}</div>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-col gap-1.5 mt-1">
+          {[["Omzet",78],["Leads",52],["Conversie",68]].map(([l,p])=>(
+            <div key={l} className="flex items-center gap-2">
+              <span className="text-[9px] text-white/50 w-12">{l}</span>
+              {bar(p as number)}
+              <span className="text-[9px] text-white/50 w-6 text-right">{p}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  if (type === "custom") return (
+    <div className={wrap}>
+      <div className={panel}>
+        <div className={row}>
+          <span className={label}>Document AI Analyse</span>
+          <span className="text-[8px] text-green-300">✓ klaar</span>
+        </div>
+        <div className="rounded-lg bg-white/5 border border-white/10 p-2.5 mt-1">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-sm">📄</span>
+            <span className="text-[9px] text-white/70 font-semibold">Contract_2024-047.pdf</span>
+          </div>
+          {[
+            ["Datum", "15 jan 2024", true],
+            ["Partijen", "2 gevonden", true],
+            ["Bedrag", "€ 4.200", true],
+            ["Risico", "Laag", true],
+            ["Samenvatting", "Gegenereerd", true],
+          ].map(([k,v,ok])=>(
+            <div key={k as string} className="flex items-center gap-2 py-0.5">
+              <span className="text-[8px] text-white/30 w-16">{k}</span>
+              <span className="text-[9px] text-white/70 flex-1">{v}</span>
+              <span className="text-[8px] text-green-300">✓</span>
+            </div>
+          ))}
+        </div>
+        <div className={`${row} mt-auto`}>
+          <span className={label}>Gemiddeld 40 doc/dag</span>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (type === "strategy") return (
+    <div className={wrap}>
+      <div className={panel}>
+        <div className={row}>
+          <span className={label}>AI Roadmap 2024</span>
+        </div>
+        <div className="flex flex-col gap-2 mt-1 flex-1">
+          {[
+            ["Fase 1", "Analyse & Scan", 100, true],
+            ["Fase 2", "Pilot Workflow", 75, false],
+            ["Fase 3", "Implementatie", 0, false],
+            ["Fase 4", "Optimalisatie", 0, false],
+          ].map(([fase, title, pct, done])=>(
+            <div key={fase as string} className="flex flex-col gap-1">
+              <div className={row}>
+                <div className="flex items-center gap-1.5">
+                  <div className={`w-1.5 h-1.5 rounded-full ${done ? "bg-green-400" : pct as number > 0 ? "bg-orange-400 animate-pulse" : "bg-white/20"}`} />
+                  <span className="text-[9px] text-white/40 font-semibold">{fase as string}</span>
+                  <span className="text-[9px] text-white/60">{title as string}</span>
+                </div>
+                <span className="text-[9px] text-white/40">{pct as number > 0 ? `${pct}%` : "Gepland"}</span>
+              </div>
+              <div className="h-1 rounded-full bg-white/10 overflow-hidden ml-3">
+                <div className={`h-full rounded-full ${done ? "bg-green-400" : "bg-orange-400"}`} style={{ width: `${pct}%` }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="rounded-lg bg-white/10 border border-white/10 p-2 mt-1">
+          <span className="text-[9px] text-white/70">📅 Volgende stap: <span className="text-orange-200 font-semibold">Intake plannen →</span></span>
+        </div>
+      </div>
+    </div>
+  );
+
+  return null;
 }
 
 /* ── Mobile accordion item ── */
@@ -242,53 +361,50 @@ export default function Services() {
                   background: `linear-gradient(145deg, ${service.from}, ${service.to})`,
                 }}
               >
-                {/* Decorative SVG visual */}
+                {/* Mini UI visual */}
                 <Visual type={service.visual} />
 
                 {/* Dark overlay at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
                 {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-between p-5">
+                <div className="absolute inset-0 flex flex-col justify-end p-5">
                   {/* Icon */}
-                  <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 self-start">
-                    <Icon className="w-5 h-5 text-white" />
+                  <div className="absolute top-4 left-4 w-8 h-8 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <Icon className="w-4 h-4 text-white" />
                   </div>
 
-                  {/* Bottom content */}
-                  <div className="overflow-hidden">
-                    {/* Title — always visible */}
-                    <h3
-                      className="text-white font-bold leading-tight mb-0 whitespace-nowrap overflow-hidden text-ellipsis"
-                      style={{
-                        fontSize: isActive ? "1.1rem" : "0.85rem",
-                        transition: "font-size 0.3s ease",
-                        writingMode: isActive ? "horizontal-tb" : "vertical-rl",
-                        transform: isActive ? "none" : "rotate(180deg)",
-                      }}
-                    >
-                      {service.title}
-                    </h3>
+                  {/* Title */}
+                  <h3
+                    className="text-white font-bold leading-tight whitespace-nowrap overflow-hidden text-ellipsis"
+                    style={{
+                      fontSize: isActive ? "1.05rem" : "0.8rem",
+                      transition: "font-size 0.3s ease",
+                      writingMode: isActive ? "horizontal-tb" : "vertical-rl",
+                      transform: isActive ? "none" : "rotate(180deg)",
+                    }}
+                  >
+                    {service.title}
+                  </h3>
 
-                    {/* Description + tags — only when active */}
-                    <div
-                      style={{
-                        maxHeight: isActive ? "200px" : "0px",
-                        opacity: isActive ? 1 : 0,
-                        transition: "max-height 0.4s ease, opacity 0.3s ease",
-                        overflow: "hidden",
-                      }}
-                    >
-                      <p className="text-white/85 text-xs leading-relaxed mt-2 mb-3">
-                        {service.description}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {service.tags.map((tag) => (
-                          <span key={tag} className="px-2.5 py-1 rounded-full text-xs font-medium bg-white/20 text-white backdrop-blur-sm border border-white/20">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                  {/* Description + tags — only when active */}
+                  <div
+                    style={{
+                      maxHeight: isActive ? "200px" : "0px",
+                      opacity: isActive ? 1 : 0,
+                      transition: "max-height 0.4s ease, opacity 0.3s ease",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <p className="text-white/80 text-xs leading-relaxed mt-2 mb-3">
+                      {service.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {service.tags.map((tag) => (
+                        <span key={tag} className="px-2.5 py-1 rounded-full text-xs font-medium bg-white/20 text-white border border-white/20">
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
