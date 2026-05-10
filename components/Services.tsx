@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Bot, Workflow, BarChart3, MessageSquare, Cpu, Lightbulb, ChevronDown } from "lucide-react";
+import React from "react";
+import { Bot, Workflow, BarChart3, MessageSquare, Cpu, Lightbulb, ChevronDown, Mail, ClipboardList, Send, Calendar, FileText } from "lucide-react";
 
 const services = [
   {
@@ -56,7 +57,7 @@ const services = [
 
 /* ── Mini UI panels ── */
 function Visual({ type, gradient }: { type: string; gradient: string }) {
-  const base = `w-full rounded-xl bg-gradient-to-br ${gradient} p-3 flex flex-col gap-2 overflow-hidden`;
+  const base = `w-full h-48 rounded-xl bg-gradient-to-br ${gradient} p-3 flex flex-col gap-2 overflow-hidden`;
   const row = "flex items-center justify-between";
   const lbl = "text-[9px] text-white/50 uppercase tracking-widest font-semibold";
   const val = "text-[9px] text-white font-semibold";
@@ -98,7 +99,7 @@ function Visual({ type, gradient }: { type: string; gradient: string }) {
     <div className={base}>
       <div className={row}>
         <div className="flex items-center gap-1.5">
-          <span className="text-sm">💬</span>
+          <MessageSquare className="w-3 h-3 text-white/70" />
           <span className={lbl}>Nova Chatbot</span>
         </div>
         {pill("● online", "bg-green-500/30")}
@@ -135,12 +136,20 @@ function Visual({ type, gradient }: { type: string; gradient: string }) {
         {pill("● live", "bg-green-500/30")}
       </div>
       <div className="flex flex-col gap-1.5">
-        {[["📨","E-mail binnenkomt",true],["🤖","AI verwerkt inhoud",true],["📋","CRM aangemaakt",true],["✉️","Bevestiging verstuurd",true],["📅","Follow-up ingepland",false]].map(([icon,step,done],i)=>(
+        {([
+          { Icon: Mail,          label: "E-mail binnenkomt",    done: true },
+          { Icon: Bot,           label: "AI verwerkt inhoud",   done: true },
+          { Icon: ClipboardList, label: "CRM aangemaakt",       done: true },
+          { Icon: Send,          label: "Bevestiging verstuurd",done: true },
+          { Icon: Calendar,      label: "Follow-up ingepland",  done: false },
+        ] as { Icon: React.ElementType; label: string; done: boolean }[]).map(({ Icon, label, done }, i) => (
           <div key={i} className="flex items-center gap-2">
-            <div className={`w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-[9px] font-bold ${done?"bg-white/25 text-white":"bg-black/20 text-white/50"}`}>
-              {done ? "✓" : icon}
+            <div className={`w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center ${done ? "bg-white/25" : "bg-black/20"}`}>
+              {done
+                ? <span className="text-[9px] font-bold text-white">✓</span>
+                : <Icon className="w-2.5 h-2.5 text-white/50" />}
             </div>
-            <span className={`text-[9px] flex-1 truncate ${done?"text-white/80":"text-white/40"}`}>{step as string}</span>
+            <span className={`text-[9px] flex-1 truncate ${done ? "text-white/80" : "text-white/40"}`}>{label}</span>
           </div>
         ))}
       </div>
@@ -186,7 +195,7 @@ function Visual({ type, gradient }: { type: string; gradient: string }) {
       </div>
       <div className="bg-black/15 rounded-xl p-2.5">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-base">📄</span>
+          <FileText className="w-3.5 h-3.5 text-white/80 flex-shrink-0" />
           <span className="text-[9px] text-white/80 font-semibold truncate">Contract_2024-047.pdf</span>
         </div>
         {[["Datum","15 jan 2024"],["Partijen","2 gevonden"],["Bedrag","€ 4.200"],["Risico","Laag"],["Samenvatting","Gegenereerd"]].map(([k,v])=>(
@@ -222,8 +231,9 @@ function Visual({ type, gradient }: { type: string; gradient: string }) {
           </div>
         ))}
       </div>
-      <div className="bg-black/15 rounded-lg p-2 mt-auto">
-        <span className="text-[9px] text-white/70">📅 Volgende stap: <span className="text-white font-semibold">Intake plannen →</span></span>
+      <div className="bg-black/15 rounded-lg p-2 mt-auto flex items-center gap-1.5">
+        <Calendar className="w-3 h-3 text-white/60 flex-shrink-0" />
+        <span className="text-[9px] text-white/70">Volgende stap: <span className="text-white font-semibold">Intake plannen →</span></span>
       </div>
     </div>
   );
@@ -282,7 +292,7 @@ export default function Services() {
         </div>
 
         {/* Desktop: static 6-block grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
           {services.map((service) => {
             const Icon = service.icon;
             return (
