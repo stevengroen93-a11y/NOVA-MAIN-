@@ -1,16 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { MailIcon, PhoneIcon, MapPinIcon, Send, CheckCircle2 } from "lucide-react";
+import { ContactCard } from "@/components/ui/contact-card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
-type FormState = { name: string; email: string; company: string; service: string; message: string };
-
-const services = ["AI Agents", "AI Chatbot", "Workflow Automatisering", "Data & Rapportage", "Maatwerk AI-oplossing", "AI Strategie & Advies", "Weet ik nog niet"];
-
-const inputClass = "w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-[#0a0a0a] placeholder-gray-400 text-sm focus:outline-none focus:border-orange-400 focus:bg-white transition-colors";
+const services = [
+  "AI Agents",
+  "AI Chatbot",
+  "Workflow Automatisering",
+  "Data & Rapportage",
+  "Maatwerk AI-oplossing",
+  "AI Strategie & Advies",
+  "Weet ik nog niet",
+];
 
 export default function Contact() {
-  const [form, setForm] = useState<FormState>({ name: "", email: "", company: "", service: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -23,8 +31,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white">
+    <section id="contact" className="py-24 bg-orange-50/40">
       <div className="max-w-6xl mx-auto px-6">
+        {/* Header */}
         <div className="text-center mb-14">
           <p className="text-orange-600 text-sm font-semibold uppercase tracking-widest mb-3">Contact</p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#0a0a0a] mb-4">
@@ -35,81 +44,97 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-2 flex flex-col gap-4">
-            {[
-              { icon: Mail,   label: "E-mail",   value: "info@nova-automations.nl", href: "mailto:info@nova-automations.nl" },
-              { icon: Phone,  label: "Telefoon", value: "+31 6 00 000 000",          href: "tel:+31600000000" },
-              { icon: MapPin, label: "Locatie",  value: "Nederland",                 href: "#" },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <a key={item.label} href={item.href} className="rounded-xl p-5 flex items-center gap-4 bg-white border border-gray-100 shadow-sm hover:border-orange-200 hover:shadow-md transition-all">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-orange-500 to-amber-400 flex items-center justify-center flex-shrink-0 shadow-md shadow-orange-100">
-                    <Icon className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-gray-400 text-xs font-medium mb-0.5">{item.label}</div>
-                    <div className="text-[#0a0a0a] font-semibold text-sm">{item.value}</div>
-                  </div>
-                </a>
-              );
-            })}
-            <div className="rounded-xl p-5 bg-orange-50 border border-orange-100 mt-2">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0" />
-                <span className="text-green-700 text-xs font-semibold">Gemiddelde reactietijd</span>
+        <ContactCard
+          title="Neem contact op"
+          description="Heb je vragen over onze diensten of wil je een vrijblijvend gesprek? Vul het formulier in — we reageren binnen 1 werkdag."
+          contactInfo={[
+            {
+              icon: MailIcon,
+              label: "E-mail",
+              value: "info@nova-automations.nl",
+            },
+            {
+              icon: PhoneIcon,
+              label: "Telefoon",
+              value: "+31 6 00 000 000",
+            },
+            {
+              icon: MapPinIcon,
+              label: "Locatie",
+              value: "Nederland",
+              className: "col-span-2",
+            },
+          ]}
+        >
+          {submitted ? (
+            <div className="flex flex-col items-center justify-center text-center h-full min-h-[320px] gap-4">
+              <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
+                <CheckCircle2 className="w-7 h-7 text-green-600" />
               </div>
-              <p className="text-3xl font-extrabold text-[#0a0a0a]">&lt; 24 uur</p>
-              <p className="text-gray-500 text-xs mt-1">Op werkdagen reageren we altijd binnen een dag.</p>
+              <h3 className="text-xl font-bold text-[#0a0a0a]">Bericht ontvangen!</h3>
+              <p className="text-gray-500 text-sm max-w-xs">
+                Bedankt voor je bericht. We nemen binnen 24 uur contact met je op voor een gratis intake.
+              </p>
             </div>
-          </div>
-
-          <div className="lg:col-span-3">
-            {submitted ? (
-              <div className="rounded-2xl p-10 flex flex-col items-center justify-center text-center min-h-[400px] bg-white border border-green-100 shadow-sm">
-                <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mb-5">
-                  <CheckCircle2 className="w-7 h-7 text-green-600" />
+          ) : (
+            <form onSubmit={handleSubmit} className="w-full space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="name">Naam</Label>
+                  <Input id="name" type="text" placeholder="Jan de Vries" required />
                 </div>
-                <h3 className="text-xl font-bold text-[#0a0a0a] mb-2">Bericht ontvangen!</h3>
-                <p className="text-gray-500 text-sm max-w-xs">Bedankt voor je bericht. We nemen binnen 24 uur contact met je op voor een gratis intake.</p>
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="email">E-mail</Label>
+                  <Input id="email" type="email" placeholder="jan@bedrijf.nl" required />
+                </div>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="rounded-2xl p-7 flex flex-col gap-4 bg-white border border-gray-100 shadow-sm">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[#0a0a0a] text-xs font-semibold mb-1.5">Naam *</label>
-                    <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Jan de Vries" className={inputClass} />
-                  </div>
-                  <div>
-                    <label className="block text-[#0a0a0a] text-xs font-semibold mb-1.5">E-mail *</label>
-                    <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="jan@bedrijf.nl" className={inputClass} />
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="company">Bedrijfsnaam</Label>
+                  <Input id="company" type="text" placeholder="Bedrijf BV" />
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[#0a0a0a] text-xs font-semibold mb-1.5">Bedrijfsnaam</label>
-                    <input type="text" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Bedrijf BV" className={inputClass} />
-                  </div>
-                  <div>
-                    <label className="block text-[#0a0a0a] text-xs font-semibold mb-1.5">Dienst</label>
-                    <select value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-600 text-sm focus:outline-none focus:border-orange-400 focus:bg-white transition-colors">
-                      <option value="">Selecteer een dienst</option>
-                      {services.map((s) => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                  </div>
+                <div className="flex flex-col gap-2">
+                  <Label htmlFor="service">Dienst</Label>
+                  <select
+                    id="service"
+                    className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-gray-600"
+                  >
+                    <option value="">Selecteer een dienst</option>
+                    {services.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                  </select>
                 </div>
-                <div>
-                  <label className="block text-[#0a0a0a] text-xs font-semibold mb-1.5">Bericht *</label>
-                  <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Vertel ons kort over je bedrijf en wat je wilt automatiseren..." className={`${inputClass} resize-none`} />
-                </div>
-                <button type="submit" disabled={loading} className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-400 text-white font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-60 shadow-lg shadow-orange-100 mt-1">
-                  {loading ? <><div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />Versturen...</> : <><Send className="w-4 h-4" />Stuur bericht</>}
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="message">Bericht</Label>
+                <Textarea
+                  id="message"
+                  rows={5}
+                  placeholder="Vertel ons kort over je bedrijf en wat je wilt automatiseren..."
+                  required
+                />
+              </div>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-gradient-to-r from-orange-500 to-amber-400 text-white hover:opacity-90 shadow-lg shadow-orange-100 border-0"
+              >
+                {loading ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin mr-2" />
+                    Versturen...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Stuur bericht
+                  </>
+                )}
+              </Button>
+            </form>
+          )}
+        </ContactCard>
       </div>
     </section>
   );
