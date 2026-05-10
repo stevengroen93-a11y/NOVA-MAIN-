@@ -67,6 +67,7 @@ export default function Contact() {
               icon: MailIcon,
               label: "E-mail",
               value: "info@nova-automations.com",
+              className: "col-span-2",
             },
             {
               icon: MapPinIcon,
