@@ -18,12 +18,27 @@ const services = [
   "Weet ik nog niet",
 ];
 
+// Simple random math question generated once per render
+function generateQuestion() {
+  const a = Math.floor(Math.random() * 9) + 1;
+  const b = Math.floor(Math.random() * 9) + 1;
+  return { question: `Wat is ${a} + ${b}?`, answer: String(a + b) };
+}
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [spamAnswer, setSpamAnswer] = useState("");
+  const [spamError, setSpamError] = useState(false);
+  const [{ question, answer }] = useState(generateQuestion);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (spamAnswer.trim() !== answer) {
+      setSpamError(true);
+      return;
+    }
+    setSpamError(false);
     setLoading(true);
     await new Promise((res) => setTimeout(res, 1200));
     setLoading(false);
@@ -115,6 +130,23 @@ export default function Contact() {
                   required
                 />
               </div>
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="spam">{question}</Label>
+                <Input
+                  id="spam"
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="Jouw antwoord"
+                  value={spamAnswer}
+                  onChange={(e) => { setSpamAnswer(e.target.value); setSpamError(false); }}
+                  required
+                  className={spamError ? "border-red-400 focus-visible:ring-red-400" : ""}
+                />
+                {spamError && (
+                  <p className="text-xs text-red-500">Antwoord is niet correct. Probeer het opnieuw.</p>
+                )}
+              </div>
+
               <Button
                 type="submit"
                 disabled={loading}
