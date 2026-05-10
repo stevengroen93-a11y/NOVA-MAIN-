@@ -2,13 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Menu, X, Zap, Bot, FileText, ChevronDown } from "lucide-react";
+import { Menu, X, Zap, Bot, FileText, ChevronDown, Wrench } from "lucide-react";
 
 const navLinks = [
   { href: "#diensten", label: "Diensten" },
   { href: "#werkwijze", label: "Werkwijze" },
   { href: "#over-ons", label: "Over ons" },
-  { href: "#contact", label: "Maatwerk" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -24,6 +23,13 @@ const products = [
     label: "Bedrijfscontracten",
     description: "Automatisch contracten opstellen",
     icon: FileText,
+  },
+  {
+    href: "#contact",
+    label: "Maatwerk",
+    description: "Een oplossing op maat voor jouw bedrijf",
+    icon: Wrench,
+    internal: true,
   },
 ];
 
@@ -94,8 +100,7 @@ export default function Navbar() {
                     <a
                       key={product.label}
                       href={product.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {...(!product.internal && { target: "_blank", rel: "noopener noreferrer" })}
                       onClick={() => setProductsOpen(false)}
                       className="flex items-start gap-3 px-4 py-3.5 hover:bg-orange-50 transition-colors group"
                     >
@@ -146,8 +151,7 @@ export default function Navbar() {
                   <a
                     key={product.label}
                     href={product.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(!product.internal && { target: "_blank", rel: "noopener noreferrer" })}
                     onClick={() => setIsOpen(false)}
                     className="flex items-center gap-3 py-2.5 text-gray-600 hover:text-orange-600 transition-colors"
                   >
