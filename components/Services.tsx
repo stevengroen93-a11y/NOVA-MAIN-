@@ -228,10 +228,8 @@ export default function Services() {
         >
           {services.map((service, i) => {
             const Icon = service.icon;
-            const isActive = hovered === i;
-            const width = hovered === null
-              ? "16.66%"
-              : isActive ? "38%" : "12.4%";
+            const isActive = hovered === null ? i === 0 : hovered === i;
+            const width = isActive ? "38%" : "12.4%";
 
             return (
               <div
@@ -265,8 +263,8 @@ export default function Services() {
                       style={{
                         fontSize: isActive ? "1.1rem" : "0.85rem",
                         transition: "font-size 0.3s ease",
-                        writingMode: isActive ? "horizontal-tb" : hovered !== null ? "vertical-rl" : "horizontal-tb",
-                        transform: isActive || hovered === null ? "none" : "rotate(180deg)",
+                        writingMode: isActive ? "horizontal-tb" : "vertical-rl",
+                        transform: isActive ? "none" : "rotate(180deg)",
                       }}
                     >
                       {service.title}
