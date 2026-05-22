@@ -22,8 +22,8 @@ export default function CTA() {
               Plan gratis gesprek
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <a href="mailto:info@nova-automations.nl" className="flex items-center gap-2 px-8 py-3.5 rounded-xl border border-white/30 bg-white/10 text-white font-semibold hover:bg-white/20 transition-all">
-              info@nova-automations.nl
+            <a href="mailto:info@nova-automations.com" className="flex items-center gap-2 px-8 py-3.5 rounded-xl border border-white/30 bg-white/10 text-white font-semibold hover:bg-white/20 transition-all">
+              info@nova-automations.com
             </a>
           </div>
         </div>

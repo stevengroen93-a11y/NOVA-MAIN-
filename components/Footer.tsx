@@ -44,7 +44,7 @@ export default function Footer() {
               {[
                 { href: "#", icon: ExternalLink, label: "LinkedIn" },
                 { href: "#", icon: Globe,        label: "Website" },
-                { href: "mailto:info@nova-automations.nl", icon: Mail, label: "E-mail" },
+                { href: "mailto:info@nova-automations.com", icon: Mail, label: "E-mail" },
               ].map(({ href, icon: Icon, label }) => (
                 <a key={label} href={href} aria-label={label} className="w-9 h-9 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-400 hover:text-orange-600 hover:border-orange-200 transition-colors shadow-sm">
                   <Icon className="w-4 h-4" />
