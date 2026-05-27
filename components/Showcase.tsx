@@ -293,7 +293,7 @@ export default function Showcase() {
 
   return (
     <section className="py-24 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-orange-600 text-sm font-semibold uppercase tracking-widest mb-3">Zo ziet het eruit</p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#0a0a0a] mb-4">
