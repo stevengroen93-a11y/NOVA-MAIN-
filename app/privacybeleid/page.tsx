@@ -72,7 +72,43 @@ export default function Privacybeleid() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">4. Bewaartermijn</h2>
+            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">4. Grondslagen voor verwerking</h2>
+            <p>Wij verwerken uw persoonsgegevens op basis van de volgende wettelijke grondslagen (art. 6 AVG):</p>
+            <ul className="list-disc pl-6 mt-3 space-y-2">
+              <li>
+                <strong>Uitvoering van een overeenkomst</strong> — wanneer u een opdracht of dienst bij ons afneemt,
+                verwerken wij uw gegevens om die overeenkomst correct uit te voeren.
+              </li>
+              <li>
+                <strong>Toestemming</strong> — wanneer u het contactformulier invult, geeft u actief toestemming voor
+                het verwerken van uw gegevens voor het beantwoorden van uw verzoek. U kunt deze toestemming te allen
+                tijde intrekken.
+              </li>
+              <li>
+                <strong>Gerechtvaardigd belang (art. 6 lid 1 sub f AVG)</strong> — in bepaalde gevallen verwerken wij
+                uw gegevens op basis van ons gerechtvaardigd belang. Wij doen dit uitsluitend wanneer uw belangen of
+                grondrechten niet zwaarder wegen dan ons belang. Concreet gaat het om:
+                <ul className="list-disc pl-6 mt-2 space-y-1 text-sm">
+                  <li>Het opvolgen van eerder contact met (potentiële) zakelijke klanten in het kader van onze dienstverlening</li>
+                  <li>Het versturen van relevante zakelijke informatie aan bestaande relaties</li>
+                  <li>Het verbeteren van onze dienstverlening op basis van gebruikspatronen van de website</li>
+                </ul>
+                <p className="mt-2 text-sm">
+                  U heeft te allen tijde het recht bezwaar te maken tegen verwerking op basis van gerechtvaardigd belang.
+                  Neem hiervoor contact op via{" "}
+                  <a href="mailto:info@nova-automations.com" className="text-orange-600 hover:underline">info@nova-automations.com</a>.
+                  Wij zullen de verwerking dan staken, tenzij wij dwingende gerechtvaardigde gronden kunnen aanvoeren.
+                </p>
+              </li>
+              <li>
+                <strong>Wettelijke verplichting</strong> — voor zover wij wettelijk verplicht zijn gegevens te bewaren,
+                bijvoorbeeld op grond van belastingwetgeving.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">5. Bewaartermijn</h2>
             <p>
               Wij bewaren uw persoonsgegevens niet langer dan noodzakelijk voor de doeleinden waarvoor zij zijn verzameld.
               Gegevens van (potentiële) klanten bewaren wij maximaal 2 jaar na het laatste contact, tenzij een wettelijke
@@ -81,7 +117,7 @@ export default function Privacybeleid() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">5. Delen met derden</h2>
+            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">6. Delen met derden</h2>
             <p>
               Wij verkopen uw gegevens nooit aan derden. Wij kunnen uw gegevens delen met zorgvuldig geselecteerde
               verwerkers die namens ons diensten verlenen, zoals e-mailproviders of projectmanagementsoftware. Met deze
@@ -90,7 +126,7 @@ export default function Privacybeleid() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">6. Beveiliging</h2>
+            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">7. Beveiliging</h2>
             <p>
               Wij nemen passende technische en organisatorische maatregelen om uw persoonsgegevens te beveiligen tegen
               verlies, ongeautoriseerde toegang of misbruik. Denk hierbij aan versleutelde verbindingen (HTTPS),
@@ -99,15 +135,43 @@ export default function Privacybeleid() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">7. Cookies</h2>
+            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">8. Cookies en de Telecommunicatiewet</h2>
             <p>
-              Onze website maakt gebruik van functionele cookies die noodzakelijk zijn voor het correct functioneren van
-              de website. Wij plaatsen geen tracking- of marketingcookies zonder uw toestemming.
+              Wij houden ons aan de cookieregels zoals vastgelegd in de <strong>Telecommunicatiewet (Tw)</strong>,
+              die de Nederlandse implementatie vormt van de Europese ePrivacy-richtlijn. Op grond hiervan mogen wij
+              alleen cookies plaatsen na uw toestemming, tenzij de cookies strikt noodzakelijk zijn voor de gevraagde dienst.
+            </p>
+            <p className="mt-3"><strong>Wij maken gebruik van de volgende categorieën cookies:</strong></p>
+            <ul className="list-disc pl-6 mt-2 space-y-2">
+              <li>
+                <strong>Functionele cookies (geen toestemming vereist)</strong> — strikt noodzakelijk voor het
+                functioneren van de website, zoals het onthouden van formulierinvoer en sessiedata. Deze vallen
+                onder de uitzondering van art. 11.7a lid 3 Tw.
+              </li>
+              <li>
+                <strong>Analytische cookies (geanonimiseerd)</strong> — indien wij analytics gebruiken, doen wij
+                dit uitsluitend geanonimiseerd (zonder koppeling aan een persoon), waarvoor op grond van de
+                Telecommunicatiewet geen toestemming vereist is.
+              </li>
+              <li>
+                <strong>Marketing- en trackingcookies</strong> — wij plaatsen geen marketing- of trackingcookies
+                zonder uw voorafgaande, vrije en geïnformeerde toestemming.
+              </li>
+            </ul>
+            <p className="mt-3">
+              U kunt uw cookievoorkeuren te allen tijde aanpassen via de browserinstellingen. Houd er rekening mee
+              dat het uitschakelen van functionele cookies de werking van de website kan beïnvloeden.
+            </p>
+            <p className="mt-3">
+              <strong>E-mailcommunicatie:</strong> op grond van de Telecommunicatiewet is het verboden om zonder
+              toestemming commerciële e-mail te sturen aan particulieren. Wij sturen uitsluitend commerciële berichten
+              aan personen die hier expliciet toestemming voor hebben gegeven, of aan bestaande zakelijke relaties
+              over vergelijkbare diensten (opt-out recht altijd aanwezig).
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">8. Uw rechten</h2>
+            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">9. Uw rechten</h2>
             <p>Op grond van de Algemene Verordening Gegevensbescherming (AVG) heeft u de volgende rechten:</p>
             <ul className="list-disc pl-6 mt-3 space-y-1">
               <li><strong>Inzage</strong> — u kunt opvragen welke gegevens wij van u hebben</li>
@@ -125,7 +189,7 @@ export default function Privacybeleid() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">9. Wijzigingen</h2>
+            <h2 className="text-xl font-bold text-[#0a0a0a] mb-3">10. Wijzigingen</h2>
             <p>
               Wij kunnen dit privacybeleid van tijd tot tijd aanpassen. De meest actuele versie is altijd te vinden op
               onze website. Wij raden u aan dit beleid periodiek te raadplegen.
