@@ -18,8 +18,8 @@ const footerLinks = {
     { label: "Contact",   href: "#contact" },
   ],
   Legal: [
-    { label: "Privacybeleid",        href: "#" },
-    { label: "Algemene voorwaarden", href: "#" },
+    { label: "Privacybeleid",        href: "/privacybeleid" },
+    { label: "Algemene voorwaarden", href: "/algemene-voorwaarden" },
   ],
 };
 
@@ -69,7 +69,10 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
           <span>© {new Date().getFullYear()} Nova Automations. Alle rechten voorbehouden.</span>
-          <span>Gebouwd in Nederland 🇳🇱</span>
+          <div className="flex items-center gap-4">
+            <Link href="/privacybeleid" className="hover:text-orange-600 transition-colors">Privacybeleid</Link>
+            <Link href="/algemene-voorwaarden" className="hover:text-orange-600 transition-colors">Algemene voorwaarden</Link>
+          </div>
         </div>
       </div>
     </footer>
