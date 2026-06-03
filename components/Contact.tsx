@@ -28,21 +28,42 @@ function generateQuestion() {
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [spamAnswer, setSpamAnswer] = useState("");
   const [spamError, setSpamError] = useState(false);
   const [{ question, answer }] = useState(generateQuestion);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (spamAnswer.trim() !== answer) {
       setSpamError(true);
       return;
     }
     setSpamError(false);
+    setError("");
     setLoading(true);
-    await new Promise((res) => setTimeout(res, 1200));
+
+    const form = e.currentTarget;
+    const data = {
+      name:    (form.elements.namedItem("name")    as HTMLInputElement).value,
+      email:   (form.elements.namedItem("email")   as HTMLInputElement).value,
+      company: (form.elements.namedItem("company") as HTMLInputElement).value,
+      service: (form.elements.namedItem("service") as HTMLSelectElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
     setLoading(false);
-    setSubmitted(true);
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      setError("Er ging iets mis. Probeer het opnieuw of mail ons direct.");
+    }
   };
 
   return (
@@ -142,6 +163,8 @@ export default function Contact() {
                   <p className="text-xs text-red-500">Antwoord is niet correct. Probeer het opnieuw.</p>
                 )}
               </div>
+
+              {error && <p className="text-sm text-red-500">{error}</p>}
 
               <Button
                 type="submit"
